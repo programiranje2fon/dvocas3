@@ -24,7 +24,7 @@ public class SlozeniKalkulator2Test {
 	}
 
 	@Test(timeout = 2000)
-	public void testIspisi55Do0() {
+	public void metoda_Ispisi55Do0() {
 		PrintStream pom = System.out;
 		try {
 			// Otvoren outputstream za redirekciju System.out
@@ -56,12 +56,12 @@ public class SlozeniKalkulator2Test {
 	}
 
 	@Test(timeout = 2000)
-	public void testFaktorijel() {
+	public void metoda_faktorijel() {
 		assertEquals("Za unet broj N = 6 metoda ne vraca 720", 720, SlozeniKalkulator2.faktorijel(6));
 	}
 
 	@Test(timeout = 2000)
-	public void testABN() {
+	public void metoda_ABN() {
 		assertEquals("Za unete brojeve A = 2, B = 4 i N = 3 metoda ne vraca 216", 216.0,
 				SlozeniKalkulator2.ABN(2, 4, 3), 0.001);
 	}

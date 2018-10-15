@@ -39,7 +39,7 @@ public class SlozeniKalkulatorTest {
 	}
 
 	@Test(timeout = 2000)
-	public void testIspisi50Puta() {
+	public void metoda_ispisi50Puta() {
 		PrintStream pom = System.out;
 		try {
 			// Otvoren outputstream za redirekciju System.out
@@ -109,13 +109,13 @@ public class SlozeniKalkulatorTest {
 	}
 
 	@Test(timeout = 2000)
-	public void testStepenX() {
+	public void metoda_stepenX() {
 		assertEquals("Za unete brojeve X = 3.0 i N = 4 metoda ne vraca 81", 81.0, SlozeniKalkulator.stepenX(3.0, 4),
 				0.001);
 	}
 
 	@Test(timeout = 2000)
-	public void testMinStepenDva() {
+	public void metoda_minStepenDva() {
 		assertEquals("Za unet broj 55 metoda ne vraca 64", 64, SlozeniKalkulator.minStepenDva(55));
 
 	}
