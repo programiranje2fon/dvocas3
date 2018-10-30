@@ -10,17 +10,26 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class SlozeniKalkulatorTest {
+	
+	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+	private final PrintStream originalOut = System.out;
+	private final PrintStream originalErr = System.err;
 
-	SlozeniKalkulator instance;
+	private SlozeniKalkulator instance;
 
 	@Before
 	public void setUp() throws Exception {
 		instance = new SlozeniKalkulator();
+		System.setOut(new PrintStream(outContent));
+	    System.setErr(new PrintStream(errContent));
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		instance = null;
+		System.setOut(originalOut);
+	    System.setErr(originalErr);
 	}
 
 	@Test
@@ -40,67 +49,26 @@ public class SlozeniKalkulatorTest {
 
 	@Test(timeout = 2000)
 	public void metoda_ispisi50Puta() {
-		PrintStream pom = System.out;
-		try {
-			// Otvoren outputstream za redirekciju System.out
-			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-			System.out.flush();
-			// Redirekcija
-			System.setOut(new PrintStream(buffer));
+		instance.ispisi50Puta(12);
 
-			instance.ispisi50Puta(12);
+		String ocekivaniIspis = "";
 
-			System.out.flush();
+		for (int i = 1; i <= 50; i++)
+			ocekivaniIspis = ocekivaniIspis + "12" + System.lineSeparator();
 
-			// Preuzimanje ispisa metode na ekranu
-			String ispis = buffer.toString();
-
-			// Vracanje System.out na staro
-			System.setOut(pom);
-
-			String s = "";
-
-			for (int i = 1; i <= 50; i++)
-				s = s + "12" + System.lineSeparator();
-
-			assertEquals("Ako se unese broj 12, NE ispisuje se 50 puta", s.trim(), ispis.trim());
-		} catch (Exception e) {
-			System.setOut(pom);
-			e.printStackTrace();
-		}
-
+		assertEquals("Ako se unese broj 12, NE ispisuje se 50 puta", ocekivaniIspis.trim(), outContent.toString().trim());
 	}
 
 	@Test(timeout = 2000)
 	public void metoda_ispisi1Do100() {
-		PrintStream pom = System.out;
-		try {
-			// Otvoren outputstream za redirekciju System.out
-			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-			System.out.flush();
-			// Redirekcija
-			System.setOut(new PrintStream(buffer));
+		instance.ispisi1Do100();
 
-			instance.ispisi1Do100();
+		String ocekivaniIspis = "";
 
-			System.out.flush();
+		for (int i = 1; i <= 100; i++)
+			ocekivaniIspis = ocekivaniIspis + i + System.lineSeparator();
 
-			// Preuzimanje ispisa metode na ekranu
-			String ispis = buffer.toString();
-
-			// Vracanje System.out na staro
-			System.setOut(pom);
-
-			String s = "";
-
-			for (int i = 1; i <= 100; i++)
-				s = s + i + System.lineSeparator();
-
-			assertEquals("NE ispisuju se brojevi od 1 do 100", s.trim(), ispis.trim());
-		} catch (Exception e) {
-			System.setOut(pom);
-			e.printStackTrace();
-		}
+		assertEquals("NE ispisuju se brojevi od 1 do 100", ocekivaniIspis.trim(), outContent.toString().trim());
 	}
 
 	@Test(timeout = 2000)
@@ -122,32 +90,12 @@ public class SlozeniKalkulatorTest {
 
 	@Test(timeout = 2000)
 	public void metoda_deliSaDva() {
-		PrintStream pom = System.out;
-		try {
-			// Otvoren outputstream za redirekciju System.out
-			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-			System.out.flush();
-			// Redirekcija
-			System.setOut(new PrintStream(buffer));
+		SlozeniKalkulator.deliSaDva(33);
 
-			SlozeniKalkulator.deliSaDva(33);
+		String ocekivaniIspis = "16" + System.lineSeparator() + "8" + System.lineSeparator() + "4" + System.lineSeparator() + "2"
+				+ System.lineSeparator() + "1";
 
-			System.out.flush();
-
-			// Preuzimanje ispisa metode na ekranu
-			String ispis = buffer.toString();
-
-			// Vracanje System.out na staro
-			System.setOut(pom);
-
-			String s = "16" + System.lineSeparator() + "8" + System.lineSeparator() + "4" + System.lineSeparator() + "2"
-					+ System.lineSeparator() + "1";
-
-			assertEquals("Za unet broj 33 NE ispisuju se brojevi 16 8 4 2 1", s.trim(), ispis.trim());
-		} catch (Exception e) {
-			System.setOut(pom);
-			e.printStackTrace();
-		}
+		assertEquals("Za unet broj 33 NE ispisuju se brojevi 16 8 4 2 1", ocekivaniIspis.trim(), outContent.toString().trim());
 	}
 
 }
