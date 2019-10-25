@@ -10,6 +10,9 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
+import zadatak1.SlozeniKalkulatorTest;
+import zadatak2.SlozeniKalkulator2Test;
+
 /**
  * This class executes all tests and prints out the report.
  * 
@@ -17,8 +20,8 @@ import org.junit.runner.notification.Failure;
 public class PokreniTestove {
 
 	public static void main(String[] args) {
-		runTestsForClass(zadatak1.SlozeniKalkulatorTest.class);
-		runTestsForClass(zadatak2.SlozeniKalkulator2Test.class);
+		runTestsForClass(SlozeniKalkulatorTest.class);
+		runTestsForClass(SlozeniKalkulator2Test.class);
 	}
 
 	/**
