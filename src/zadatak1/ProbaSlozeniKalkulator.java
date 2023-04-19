@@ -8,6 +8,8 @@ public class ProbaSlozeniKalkulator {
 		System.out.println(k1.podeli(7,2));
 		System.out.println(k1.podeliMod(7,2));
 		
+		System.out.println(k1.izracunajPovrsinuKruga(5.0));
+		
 		//k1.ispisi50puta(5);
 		
 		//k1.ispisi1do100();

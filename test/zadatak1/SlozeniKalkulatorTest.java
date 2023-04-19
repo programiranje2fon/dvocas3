@@ -33,6 +33,11 @@ public class SlozeniKalkulatorTest {
 	}
 
 	@Test
+	public void konstanta_PI() {
+		assertEquals("Vrednost konstante nije 3.14", 3.14, SlozeniKalkulator.PI, 0.001);
+	}
+	
+	@Test
 	public void metoda_podeliDoubleDouble() {
 		assertEquals("Kad se podele 6.4 i 2.0 rezultat nije 3.2", 3.2, instance.podeli(6.4, 2.0), 0.001);
 	}
@@ -45,6 +50,20 @@ public class SlozeniKalkulatorTest {
 	@Test
 	public void metoda_podeliMod() {
 		assertEquals("Kad se podele 8 i 3 ostatak nije 2", 2, instance.podeliMod(8, 3));
+	}
+	
+	@Test
+	public void metoda_izracunajObimKruga() {
+		double r = 5.0;
+        double ocekivanObim = 2 * r * instance.PI;
+		assertEquals("Kad se unese 5 za poluprecnik kruga obim nije 31.4",ocekivanObim, instance.izracunajObimKruga(5.0),0.001);
+	}
+	
+	@Test
+	public void metoda_izracunajPovrsinuKruga() {
+		double r = 5.0;
+        double ocekivanaPovrsina = r * r * instance.PI;
+		assertEquals("Kad se unese 5 za poluprecnik kruga povrsina nije 78.5",ocekivanaPovrsina, instance.izracunajPovrsinuKruga(5.0),0.001);
 	}
 
 	@Test(timeout = 2000)
